@@ -309,7 +309,7 @@ python -m run.test \
     --model_id "MLP-KTLim/llama-3-Korean-Bllossom-8B" \
     --tokenizer "MLP-KTLim/llama-3-Korean-Bllossom-8B" \
     --device "cuda:0" \
-    --adapter_checkpoint_path "checkpoints/checkpoint-115" \
+    --adapter_checkpoint_path "checkpoints/checkpoint-85" \
     --is_test "yes" \
     --only_speaker_2 "yes"
 
