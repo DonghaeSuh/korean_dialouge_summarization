@@ -13,8 +13,8 @@
 
 이번 경진대회에서 새롭게 제안한 두 가지 기법은 다음과 같습니다.
 
-- 음성 전사 과정에서 생기는 반복 어구(단어) 노이즈를 효과적으로 전처리하는 기법 
-- 출력(output) 형식을 통일하여 데이터 효율적인 LLM fine-tuning 기법 
+- **음성 전사 과정에서 생기는 반복 어구(단어) 노이즈를 효과적으로 전처리하는 기법**
+- **출력(output) 형식을 통일하여 데이터 효율적인 LLM fine-tuning 기법**
 
 이를 통해 기존의 ROGUE와 BERTScore의 단점을 보완하고 장점을 결합한 BLEURT 점수에서 특히 주목할 만한 성과를 거두었습니다. 
 
@@ -74,7 +74,7 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
 2. 레포지토리를 clone합니다.
 
     ```
-    git clone 
+    git clone https://github.com/DonghaeSuh/korean_dialouge_summarization.git
     ```
 
 
