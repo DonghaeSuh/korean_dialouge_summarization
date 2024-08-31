@@ -27,10 +27,10 @@
 총 8개의 모델에 대한 리더보드 상 점수입니다.
 - baseline : 대회 baseline
 - baseline (with SFT) : 대회 baseline + SFT fine-tuning
-- **TG** : 전반적인 요약(Total Summary) 부분만 형식 통일(Generalization) + Instruction Fine-tuning
-- **TG + SG** : TG + 화자1, 2 요약(Speaker Summary) 형식 통일(Generalization) 
-- **TG + SG + RR** : TG + SG + 반복 어구(단어) 제거 전처리(Remove Repeated phrase and words)
-- **TG + SG + RR + Total** : TG + SG + RR 세팅으로 Train+Dev 데이터 전부(Total) 사용하여 학습
+- **TG** : 전반적인 요약(**T**otal Summary) 부분만 형식 통일(**G**eneralization) + Instruction Fine-tuning
+- **TG + SG** : TG + 화자1, 2 요약(**S**peaker Summary) 형식 통일(**G**eneralization) 
+- **TG + SG + RR** : TG + SG + 반복 어구(단어) 제거 전처리(**R**emove **R**epeated phrase and words)
+- **TG + SG + RR + Total** : **TG + SG + RR** 세팅으로 Train+Dev 데이터 전부(**T**otal) 사용하여 학습
 - **Ensemble_v1** : TG + SG + RR와 TG + SG + RR + Total 버전 중에서 짧은 문장을 선택
 - **Ensemble_v2** : Ensemble_v1에서 화자 2 요약 부분만 생성하도록 따로 학습된 모델의 결과로 대체
 
@@ -84,10 +84,10 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
     source setup.sh
     ```
     위 스크립트를 실행하면
-    - korean_dialogue_summarization라는 이름의 가상환경과
+    - korean_dialogue_summarization라는 이름의 가상환경을 생성하고 활성화한 이후
 
     - 필요 의존성 패키지들이 설치되고
-    - 3가지 chekcpoint가 checkpoints라는 폴더에 생깁니다
+    - checkpoints라는 폴더에 3가지 chekcpoint 폴더가 생깁니다
         - checkpoint-85 : "전반적인 요약" + "speaker 2 요약" 만 따로 학습한 모델입니다
         - checkpoint-115 : **TG + SG + RR** 버전 모델입니다
         - checkpoint-150 : **TG + SG + RR + Total** 버전 모델입니다
@@ -235,7 +235,7 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
 
 3. 체크포인트 관리
     
-    cofig내 "steps" 인자의 step마다 checkpoint가 "chkpoint_save_dir"위치에 저장이 됩니다
+    config내 "steps" 인자의 step마다 checkpoint가 "chkpoint_save_dir" 위치에 저장이 됩니다
 
 <br/>
 
@@ -271,8 +271,8 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
     ```
     python -m postprocess \
     --path "results/TG_SG_RR_result_postprocessed.json" \
-    --ensemble_path_1 "$results/TG_SG_RR_Total_result_postprocessed.json" \
-    --output_path "$results/ensemble_1.json"
+    --ensemble_path_1 "results/TG_SG_RR_Total_result_postprocessed.json" \
+    --output_path "results/ensemble_1.json"
     ```
     위 코드를 통해 ensemble_1 을 얻어볼 수 있습니다
 
