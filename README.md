@@ -79,18 +79,19 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
 
 
 3. setup.sh 파일을 실행합니다
-
     ```
     source setup.sh
     ```
+    
     위 스크립트를 실행하면
-    - korean_dialogue_summarization라는 이름의 가상환경을 생성하고 활성화한 이후
+    - korean_dialogue_summarization라는 이름의 **가상환경을 생성하고 활성화**한 이후
 
-    - 필요 의존성 패키지들이 설치되고
+    - **필요 의존성 패키지들이 설치**되고
     - checkpoints라는 폴더에 3가지 chekcpoint 폴더가 생깁니다
-        - checkpoint-85 : "전반적인 요약" + "speaker 2 요약" 만 따로 학습한 모델입니다
-        - checkpoint-115 : **TG + SG + RR** 버전 모델입니다
-        - checkpoint-150 : **TG + SG + RR + Total** 버전 모델입니다
+        - **checkpoint-85** : "전반적인 요약" + "speaker 2 요약" 만 따로 학습한 모델입니다
+        - **checkpoint-115** : **TG + SG + RR** 버전 모델입니다
+        - **checkpoint-150** : **TG + SG + RR + Total** 버전 모델입니다
+    - checkpoint가 존재하는 drive [링크](https://drive.google.com/drive/folders/1o4MNcMKMMb84Hn3YWHwF6jLNAsOJKdyR)입니다.
 
 <br/>
 
@@ -252,6 +253,8 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
         --adapter_checkpoint_path {체크포인트 경로}
     ```
 
+<br/>
+
 **2. 후처리**
     
     본 레포지토리의 방법론을 사용할 시, output 내에 (## 전반적인 요약, ## speaker 1 요약, ## speaker 2 요약)과 같은 Header 들이 달리게 됩니다.
@@ -262,6 +265,8 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
     --output_path "results/TG_SG_RR_Total_result_postprocessed.json"
     ```
     이를 없에주기 위해 위 코드를 통해 postprocess.py 모듈로 후처리할 수 있습니다
+
+<br/>
 
 **3. 앙상블**
 
