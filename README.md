@@ -162,7 +162,7 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
 
 ### Training
 
-**1. Wandb Login**
+1. Wandb Login
 
    ```
    wandb login
@@ -172,7 +172,7 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
 
 <br/>
 
-**2. config 설정**
+2. config 설정
 
     원하는 configuration 설정을 json 형태의 config 파일로 준비합니다
 
@@ -218,7 +218,7 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
 
 <br/>
 
-**3. 학습**
+3. 학습
 
     ```
     python -m run.train_qlora
@@ -234,7 +234,7 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
 
 <br/>
 
-**4. 체크포인트 관리**
+4. 체크포인트 관리
     
     config내 "steps" 인자의 step마다 checkpoint가 "chkpoint_save_dir" 위치에 저장이 됩니다
 
@@ -242,7 +242,7 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
 
 ### Inference
 
-**1. 추론**
+1. 추론
 
     추론하고자 하는 checkpoint의 경로를 adapter_checkpoint_path에 전달하고, 저장할 경로, 사용하는 모델 id(허깅페이스)를 전달해주고 실행합니다
     ```
@@ -255,7 +255,7 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
 
 <br/>
 
-**2. 후처리**
+2. 후처리
     
     본 레포지토리의 방법론을 사용할 시, output 내에 (## 전반적인 요약, ## speaker 1 요약, ## speaker 2 요약)과 같은 Header 들이 달리게 됩니다.
     
@@ -268,7 +268,7 @@ Mac, Windows, Linux에서 [conda](https://docs.continuum.io/free/anaconda/instal
 
 <br/>
 
-**3. 앙상블**
+3. 앙상블
 
     앙상블(더 짧은 문장을 선택)을 하기 위해서는
     후처리된 두 개의 json파일을 results 폴더에 마련한 이후
