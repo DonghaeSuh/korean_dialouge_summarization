@@ -300,8 +300,8 @@ source run_fast_inference.sh
 <br/>
 
 ### Fast ensemble_2
-가장 최고 점수의 모델인 ensemble_2를 재현하기 위해서는
-총 3가지 단계를 거쳐야 합니다
+최고 점수의 모델인 ensemble_2를 재현하기 위해서는 먼저 ensemble_1이 필요하고\
+이후, 총 3가지 단계를 거쳐야 합니다
 ```
 # checkpoint-85 모델로 test.py 실행
 python -m run.test \
