@@ -24,7 +24,6 @@ class CustomDataset(Dataset):
         
         def make_chat(inp):
             chat = [f"**대화 키워드** : {', '.join(inp['subject_keyword'])}에 대한 대화 내용입니다.\n**대화 내용** : "]
-            # [f"**대화 키워드** :\n{', '.join(inp['subject_keyword'])}에 대한 대화 내용입니다.\n**대화 내용** :\n"]
             speaker_1 = inp['speaker_1']
             speaker_2 = inp['speaker_2']
 
@@ -35,7 +34,7 @@ class CustomDataset(Dataset):
                     continue
                 if only_speaker_2:
                     if speaker == speaker_2:
-                        speaker = "**"+speaker+"**"
+                        speaker = "**"+speaker+"**" # speaker 2 요약만을 진행할 때, speaker 2에 보다 집중하기 위한 markdown 강조 태그 추가
                 
                 chat.append(f"{speaker} : {utterance}")
 
@@ -45,7 +44,6 @@ class CustomDataset(Dataset):
                 question_1 = f"위 대화 내용을 다시 한번 잘 읽어주세요. \n이제 ## 전반적인 요약, ## {speaker_2} 요약 구조의 한국어 대화 요약문을 생성해주세요."
             else:
                 question_1 = f"위 대화 내용을 다시 한번 잘 읽어주세요. \n이제 ## 전반적인 요약, ## {speaker_1} 요약, ## {speaker_2} 요약 구조의 한국어 대화 요약문을 생성해주세요."
-            # f"위 대화 내용을 다시 한번 잘 읽어주세요. \n이제 ## 전반적인 요약, ## {speaker_1} 요약, ## {speaker_2} 요약 구조의 한국어 대화 요약문을 생성해주세요."
             chat = chat + "\n\n" + question_1
 
             return chat
