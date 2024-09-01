@@ -33,9 +33,10 @@ def main(args):
     )
 
     if args.adapter_checkpoint_path:
-      model = PeftModel.from_pretrained(model, args.adapter_checkpoint_path)
-      model = model.merge_and_unload()
-      model.to(dtype = torch.bfloat16)
+        print(f"{args.adapter_checkpoint_path} is loaded ...")
+        model = PeftModel.from_pretrained(model, args.adapter_checkpoint_path)
+        model = model.merge_and_unload()
+        model.to(dtype = torch.bfloat16)
     model.eval()
 
     if args.tokenizer == None:
