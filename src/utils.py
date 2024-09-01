@@ -627,6 +627,7 @@ def file_preprocess(data:json, path:str):
 
     - make_one_repeated_words
         : replace the repeated words in the text with one word
+        
     - remove_jom
         : remove '좀' in utterances and outputs
 
@@ -650,92 +651,20 @@ def file_preprocess(data:json, path:str):
     data = add_josa_after_speaker_in_output(data, path)
     data = speaker_summary_generalization(data, path)
     data = remove_duplicate_subject_keywords(data, path)
-    # data = remove_samples_with_more_than_50_utterances(data, path)
+    # data = remove_samples_with_more_than_50_utterances(data, path) : 성능이 좋지 않아 사용 x
     data = remove_empty_utterance(data)
     data = remove_repeated_sentences_in_next_turn(data, path)
     data = name_token_preprocessing(data, path)
     data = text_preprocess(data)
     data = make_one_repeated_words(data, path, iter=0)
     data = make_one_repeated_words(data, path, iter=1)
-    # data = remove_jom(data, path)
-    # data = name_token_preprocessing(data, path)
-    # data = replace_name_josa_in_conversation(data, path)
+    # data = remove_jom(data, path) : 성능이 좋지 않아 사용 x
+    # data = name_token_preprocessing(data, path) : 성능이 좋지 않아 사용 x
+    # data = replace_name_josa_in_conversation(data, path) : 성능이 좋지 않아 사용 x
     print("file_preprocess done ...")
 
 
     return data
-
-
-"""
-불용어 처리
-
-## hyperstella2 ##
-- name1, name2..
-- 뒤에 물결이 붙는 경우 ("음~", "아~")
-- 그, 뭐, 어, 인제, 막, 아, 음, 읍, 오, 으
-- 한 글자가 두번 반복되는 경우 ("또 또", "그 그")
-
-
-## nova ##
-- name 그대로 유지
-- 뒤에 물결이 붙는 경우 ("음~", "아~")
-- 그, 뭐, 어, 인제, 막, 아, 음, 읍, 오, 으
-- 단어가 두 번 반복되는 경우 제거 ( r'\b([가-힣a-zA-Z0-9_]+)\s+\1\b')
-
-
-## nova3, hypernova ##
-- name 그대로 유지
-- 뒤에 물결이 붙는 경우 ("음~", "아~")
-- 그, 뭐, 어, 인제, 막, 아, 음, 읍, 오, 으
-- 단어가 두 번 반복되는 경우 제거 ( r'\b([가-힣a-zA-Z0-9_]+)\s+\1\b')
-- x를 포함한 단어 제거 (r'\b[가-힣a-zA-Z]*[xX][가-힣a-zA-Z]*\b')
-
-
-## hypernova2 ##
-- name 그대로 유지
-- 뒤에 물결이 붙는 경우 ("음~", "아~")
-- 그, 뭐, 어, 인제, 막, 아, 음, 읍, 오, 으, 좀
-- 단어가 두 번 이상 반복되는 경우 제거 re.sub(r'\b(\w+)\b(?:\s+\1\b)+', r'\1', text)
-- x를 포함한 단어 제거 (r'\b[가-힣a-zA-Z]*[xX][가-힣a-zA-Z]*\b')
-- 전처리 이후 빈 utterance 제거
-
-## cosmos ##
-- hypernova기반
-- output의 맨 첫 번째 문장인 total summary 형식을 "두 화자는 이 대화에서"로 통일
-- output 이상치 추가 수정 
-    (train) train-000130, train-000030, train-000193 / train-000032, train-000418 / train-000020, train-000176
-    (dev)   dev-000085, dev-000093 / dev-000074, dev-000093 / 
-
-## cosmos2 ##
-- cosmos기반
-- output 형식 통일 이후 output 속 중복단어 제거
-- 의미없이 끼어있는 ' 좋 ', ' 크 ', ' 스 '
-- '. .' 제거
-- 문장 맨 앞 '. ' or ' . ' 제거
-- output 속 SD\d{7} 앞에 '화자' 제거 <- 입력으로 'SD\d{7} : utterance' 형태로 들어가기 때문에
-
-## galaxy ##
-- cosmos2기반
-- output의 speaker summary 형식 통일 (+ utterance 시작 speaker == speaker summary 시작 speaker)
-- dev의 subject_keyword 중복 단어 제거
-
-## galaxy2 ##
-- galaxy기반
-- speaker summary 형식을 bullet point로 변경
-
-## blackhole (짱짱미녀 서연, 너무예뻐 서연) ##
-- galaxy 기반
-- 반복되는 단어 조합 제거
-
-## blackhole2 ##
-- blackhole 기반
-- 반복되는 단어 조합 제거 Version 2
-
-## blackhole3 ##
-- blackhole 기반
-- 좀 제거(utterance, output)
-
-"""
 
 
 def remove_stopwords(text):
